@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Roleta Lying Table</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .roleta {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 30px;
+    }
+
+    .camara {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: 22px;
+      transition: all 0.3s ease;
+    }
+
+    .bang {
+      background-color: crimson !important;
+    }
+
+    .clic {
+      background-color: #444;
+    }
+
+    .oculto {
+      opacity: 0;
+      transform: scale(0);
+      pointer-events: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: crimson;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: darkred;
+    }
+  </style>
+</head>
+<body>
+    <h1 style="margin-bottom: 2%;">ROLETA LYING TABLE</h1>
+  <div class="roleta" id="roleta"></div>
+  <button onclick="girar()">Girar</button>
+
+  <script>
+    const roleta = document.getElementById('roleta');
+    let cartuchos = [];
+
+    function criarRoleta() {
+      roleta.innerHTML = "";
+      cartuchos = Array(6).fill("CLIC");
+      const indiceBang = Math.floor(Math.random() * 6); // posição aleatória para o BANG
+      cartuchos[indiceBang] = "BANG";
+
+      const anguloInicial = -90;
+      const raio = 100;
+
+      cartuchos.forEach((tipo, i) => {
+        const ang = (360 / cartuchos.length) * i + anguloInicial;
+        const rad = ang * (Math.PI / 180);
+        const x = 120 + Math.cos(rad) * raio;
+        const y = 120 + Math.sin(rad) * raio;
+
+        const div = document.createElement('div');
+        div.className = `camara ${tipo === "BANG" ? "bang" : "clic"}`;
+        div.style.left = `${x}px`;
+        div.style.top = `${y}px`;
+        div.dataset.tipo = tipo;
+        div.textContent = i + 1; // número branco no centro
+        roleta.appendChild(div);
+      });
+    }
+
+    function girar() {
+      const cams = [...document.querySelectorAll('.camara:not(.oculto)')];
+      if (cams.length === 0) {
+        alert("Reiniciando...");
+        criarRoleta();
+        return;
+      }
+
+      const sorteada = cams[Math.floor(Math.random() * cams.length)];
+      const tipo = sorteada.dataset.tipo;
+
+      if (tipo === "BANG") {
+        alert("💥 BANG! Você perdeu. Reiniciando...");
+        criarRoleta();
+      } else {
+        sorteada.classList.add('oculto');
+      }
+    }
+
+    criarRoleta();
+  </script>
+</body>
+</html>
