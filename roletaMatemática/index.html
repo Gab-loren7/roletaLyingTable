@@ -2,8 +2,13 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Roleta Lying Table</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background: #111;
       color: white;
@@ -13,21 +18,22 @@
       align-items: center;
       justify-content: center;
       height: 100vh;
-      overflow-y: hidden;
-      overflow-x: hidden;
+      margin: 0;
     }
 
     .roleta {
       position: relative;
-      width: 300px;
-      height: 300px;
-      margin-bottom: 30px;
+      width: 80vw;
+      height: 80vw;
+      max-width: 300px;
+      max-height: 300px;
+      margin-bottom: 5vh;
     }
 
     .camara {
       position: absolute;
-      width: 60px;
-      height: 60px;
+      width: 16%;
+      height: 16%;
       border-radius: 50%;
       background-color: #666;
       display: flex;
@@ -35,7 +41,7 @@
       justify-content: center;
       font-weight: bold;
       color: white;
-      font-size: 22px;
+      font-size: 4vw;
       transition: all 0.3s ease;
     }
 
@@ -54,8 +60,8 @@
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 18px;
+      padding: 2vh 4vw;
+      font-size: 5vw;
       background-color: crimson;
       color: white;
       border: none;
@@ -66,10 +72,21 @@
     button:hover {
       background-color: darkred;
     }
+
+    @media (min-width: 600px) {
+      .camara {
+        font-size: 1.2em;
+      }
+
+      button {
+        font-size: 1em;
+        padding: 10px 20px;
+      }
+    }
   </style>
 </head>
 <body>
-    <h1 style="margin-bottom: 2%;">ROLETA LYING TABLE</h1>
+
   <div class="roleta" id="roleta"></div>
   <button onclick="girar()">Girar</button>
 
@@ -80,24 +97,24 @@
     function criarRoleta() {
       roleta.innerHTML = "";
       cartuchos = Array(6).fill("CLIC");
-      const indiceBang = Math.floor(Math.random() * 6); // posição aleatória para o BANG
+      const indiceBang = Math.floor(Math.random() * 6);
       cartuchos[indiceBang] = "BANG";
 
-      const anguloInicial = -90;
-      const raio = 100;
+      const centro = 40; // em %
+      const raio = 30; // em %
 
       cartuchos.forEach((tipo, i) => {
-        const ang = (360 / cartuchos.length) * i + anguloInicial;
+        const ang = (360 / cartuchos.length) * i - 90;
         const rad = ang * (Math.PI / 180);
-        const x = 120 + Math.cos(rad) * raio;
-        const y = 120 + Math.sin(rad) * raio;
+        const x = centro + Math.cos(rad) * raio;
+        const y = centro + Math.sin(rad) * raio;
 
         const div = document.createElement('div');
         div.className = `camara ${tipo === "BANG" ? "bang" : "clic"}`;
-        div.style.left = `${x}px`;
-        div.style.top = `${y}px`;
+        div.style.left = `${x}%`;
+        div.style.top = `${y}%`;
         div.dataset.tipo = tipo;
-        div.textContent = i + 1; // número branco no centro
+        div.textContent = i + 1;
         roleta.appendChild(div);
       });
     }
