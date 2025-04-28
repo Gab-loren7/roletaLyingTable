@@ -1,7 +1,22 @@
-# 💥 ROLETA LYING TABLE 💥
+<!-- Cabeçario -->
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/307b4617-828f-434f-9f82-da2748d21456/deploy-status)](https://app.netlify.com/sites/roletalyingtable/deploys)
+<div align="center">
+  <h1>
+  💥 ROLETA LYING TABLE 💥
+  </h1>
+  <h3>
+   Feito totalmente em HTML, CSS e JS.
+  </h3>
+  
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/3d1c9e82-ede1-4a5c-a3cc-ea4c38302ca2/deploy-status)]([https://siteimparoupar.netlify.app/](https://roletalyingtable.netlify.app/))
+  
+</div>
 
-![image](https://github.com/user-attachments/assets/c1301804-f598-4346-8666-fa0b2bd2ec55)
+<br>
 
-<a href="https://roletalyingtable.netlify.app/">LINK DO SITE</a>
+ <!-- Pré-visualização da primeira página -->
+<h3>
+    ✨ Pré-visualização da página
+</h3>
+
+![Captura de tela 2025-04-28 084605](https://github.com/user-attachments/assets/72b803d6-3cdb-436a-8568-f412d9ae0fe5)
