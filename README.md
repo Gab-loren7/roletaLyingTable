@@ -8,7 +8,7 @@
    Feito totalmente em HTML, CSS e JS.
   </h3>
   
-  [![Netlify Status](https://api.netlify.com/api/v1/badges/3d1c9e82-ede1-4a5c-a3cc-ea4c38302ca2/deploy-status)]([https://siteimparoupar.netlify.app/](https://roletalyingtable.netlify.app/))
+  [![Netlify Status](https://api.netlify.com/api/v1/badges/3d1c9e82-ede1-4a5c-a3cc-ea4c38302ca2/deploy-status)]([https://siteimparoupar.netlify.app/](https://roletalyingtable.netlify.app/)
   
 </div>
 
