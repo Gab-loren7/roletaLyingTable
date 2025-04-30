@@ -3,145 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
   <title>Roleta Lying Table</title>
-  <h1>ROLETA LIYNG TABLE</h1>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #111;
-      color: white;
-      font-family: sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      overflow-y: hidden;
-      overflow-x: hidden;
-    }
-
-    .roleta {
-      position: relative;
-      width: 80vw;
-      height: 80vw;
-      max-width: 400px;
-      max-height: 400px;
-      margin-bottom: 5vh;
-    }
-
-    .camara {
-      position: absolute;
-      width: 16%;
-      height: 16%;
-      border-radius: 50%;
-      background-color: #666;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      color: white;
-      font-size: 4vw;
-      transition: all 0.3s ease;
-    }
-
-    .bang {
-      background-color: crimson !important;
-    }
-
-    .clic {
-      background-color: #444;
-    }
-
-    .oculto {
-      opacity: 0;
-      transform: scale(0);
-      pointer-events: none;
-    }
-
-    button {
-      padding: 2vh 4vw;
-      font-size: 5vw;
-      background-color: crimson;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: darkred;
-    }
-
-    @media (min-width: 600px) {
-      .camara {
-        font-size: 1.2em;
-      }
-
-      button {
-        font-size: 1em;
-        padding: 20px 50px;
-      }
-    }
-  </style>
 </head>
 <body>
 
+  <h1>ROLETA LYING TABLE</h1>
   <div class="roleta" id="roleta"></div>
-  <button onclick="girar()">Girar</button>
+  <button onclick="girar()">Atirar</button>
 
-  <script>
-    const roleta = document.getElementById('roleta');
-    let cartuchos = [];
-
-    function criarRoleta() {
-      roleta.innerHTML = "";
-      cartuchos = Array(6).fill("CLIC");
-      const indiceBang = Math.floor(Math.random() * 6);
-      cartuchos[indiceBang] = "BANG";
-
-      const centro = 40; // em %
-      const raio = 30; // em %
-
-      cartuchos.forEach((tipo, i) => {
-        const ang = (360 / cartuchos.length) * i - 90;
-        const rad = ang * (Math.PI / 180);
-        const x = centro + Math.cos(rad) * raio;
-        const y = centro + Math.sin(rad) * raio;
-
-        const div = document.createElement('div');
-        div.className = `camara ${tipo === "BANG" ? "bang" : "clic"}`;
-        div.style.left = `${x}%`;
-        div.style.top = `${y}%`;
-        div.dataset.tipo = tipo;
-        div.textContent = i + 1;
-        roleta.appendChild(div);
-      });
-    }
-
-    function girar() {
-      const cams = [...document.querySelectorAll('.camara:not(.oculto)')];
-      if (cams.length === 0) {
-        alert("Reiniciando...");
-        criarRoleta();
-        return;
-      }
-
-      const sorteada = cams[Math.floor(Math.random() * cams.length)];
-      const tipo = sorteada.dataset.tipo;
-
-      if (tipo === "BANG") {
-        alert("💥 BANG! Você perdeu. Reiniciando...");
-        criarRoleta();
-      } else {
-        sorteada.classList.add('oculto');
-      }
-    }
-
-    criarRoleta();
-  </script>
+  <!-- Áudios -->
+  <audio id="gunFire" src="AUDIO/gunFire.mp3"></audio>
+  <audio id="gunReload" src="AUDIO/gunReload.mp3"></audio>
 </body>
 </html>

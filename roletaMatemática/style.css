@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #111;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  .roleta {
+    position: relative;
+    width: 80vw;
+    height: 80vw;
+    max-width: 400px;
+    max-height: 400px;
+    margin-bottom: 5vh;
+  }
+
+  .camara {
+    position: absolute;
+    width: 16%;
+    height: 16%;
+    border-radius: 50%;
+    background-color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    font-size: 4vw;
+    transition: all 0.3s ease;
+  }
+
+  .bang {
+    background-color: crimson !important;
+  }
+
+  .clic {
+    background-color: #444;
+  }
+
+  .oculto {
+    opacity: 0;
+    transform: scale(0);
+    pointer-events: none;
+  }
+
+  button {
+    padding: 2vh 4vw;
+    font-size: 5vw;
+    background-color: crimson;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: darkred;
+  }
+
+  @media (min-width: 600px) {
+    .camara {
+      font-size: 1.2em;
+    }
+
+    button {
+      font-size: 1em;
+      padding: 20px 50px;
+    }
+  }
